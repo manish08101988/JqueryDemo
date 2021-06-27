@@ -104,7 +104,14 @@ $('#confirm').change(function() {
 
 
 function saveData(){
-$('#myTable').append('<tr><td>Sachin</td><td>sachin@gmail.com</td><td>Male</td><td>M.Tech</td><td>Yes</td></tr>');
+
+var text_name = $("#u_name").val();
+
+var text_email = $("#email").val();
+var gender_Value = $("input[name='gender']:checked").val();
+var course_sel = $('#course option:selected').text()
+var confirm= $('#confirm').is(':checked')
+$('#myTable').append('<tr><td>'+text_name+ '</td><td>'+text_email+ '</td><td>' +gender_Value+ '</td><td>' +course_sel+'</td><td>'+confirm+'</td></tr>');
 
 }
 </script>
