@@ -1,128 +1,229 @@
 <html>
+
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
+<style>
+  body { background-color: #fafafa; }
+  .container { margin: 70px auto; max-width: 768px; }
+</style>
+
 <body>
+  <div class="container"> 
+  <h3> This is Demo Application for New User </h3>
 
-<h3> This is Demo Application for New User </h3>
-<form action="#" method="get" name="user_form" id="user_form">
-User Name :  <input type= "text" name="u_name" id="u_name"  />
-<br/>
-On Pess key value: <div id="div1"> </div>
-<br/>
-<input type="button" id="text_value" value="Get Value"/>
-<input type="button" id="text_reset" value=" Reset "/>
-<br/>
-<br/>
-Email:   <input type= "text" name="email" id="email" />
- <span class="error" id="invalid_email"  >Email-id is invalid</span>
-<div id="div2"></div>
-<br />
-<br/>
- <h4>Please select your gender.</h4>
-    <p> 
-        <label><input type="radio" name="gender" value="male">Male</label> 
-        <label><input type="radio" name="gender" value="female">Female</label>
+  <p class="lead">* marked fields are required</p>
+
+
+  <form action="#" method="get" name="user_form" id="user_form">
+    
+    <div class="form-group">
+      <label for="UserName">User Name: *</label><br />
+      <input type="text" name="u_name" id="u_name" class="form-control" placeholder="User Name" required>
+    </div>
+  
+   <!-- User Name : <input type="text" name="u_name" id="u_name" /> -->
+    
+    <!-- On Pess key value: <div id="div1"> </div> -->
+    
+    <!-- <input type="button" id="text_value" value="Get Value" />
+    <input type="button" id="text_reset" value=" Reset " /> -->
+ 
+    <br />
+    <div class="form-group">
+      <label for="Email">Email: *</label><br />
+       <input type="text" name="email" id="email" class="form-control" required />
+      <span class="error" id="invalid_email">Email-id is invalid</span>
+      <div id="div2"></div>
+      <br />
+     
+    </div>
+    <div class="form-group">
+      <label for="Gender">Please select your gender: *</label><br />
+      <p>
+      <label><input type="radio" name="gender" value="male">Male</label>
+      <label><input type="radio" name="gender" value="female">Female</label>
     </p>
-    <p><input type="button"  id ="gender" value="Get Value"></p>
-<br/>
-Course :  <select  name="course" id="course">
-<option value="1"> B.Tech </option>
-<option value="2"> M.Tech </option>
-<option value="3"> BCA</option>
-<option value="4"> MCA</option>
-</select>
-<br/>
-<br/>
-Confirm box:<input type="checkbox" name="confirm" id="confirm">
-<div id ="div3"> </div>
-<br/>
-<br/>
-<input type="button" value="Submit" onClick ="saveData()">
-</form>
+    <p><input type="button" id="gender" value="Get Value"></p>
+  </div>
+    Course : <select name="course" id="course">
+      <option value="1"> B.Tech </option>
+      <option value="2"> M.Tech </option>
+      <option value="3"> BCA</option>
+      <option value="4"> MCA</option>
+    </select>
+    <br />
+    <br />
+    Confirm box:<input type="checkbox" name="confirm" id="confirm">
+    <div id="div3"> </div>
+    <br />
+    <br />
+    <input type="button" value="Submit" onClick="saveData()">
+  </form>
 
-<h4>User Data</h4>
-<table border="1" id="myTable">
-<td>Name</td>
-<td>E-mail</td>
-<td>Gender</td>
-<td>Course</td>
-<td>Confirm</td>
-</table>
+  <h4>User Data</h4>
+  <table border="1" id="myTable">
+    <td>Name</td>
+    <td>E-mail</td>
+    <td>Gender</td>
+    <td>Course</td>
+    <td>Confirm</td>
+  </table>
+</div>
 </body>
 <script>
-/* print value in div from text input    */
-$(document).ready(function(){
-  $("#u_name").keyup(function(){
-    var inputVal = this.value;
-	$('#div1').text(inputVal);
+  /* print value in div from text input    */
+  $(document).ready(function () {
+
+
+    $("#u_name").keyup(function () {
+      var inputVal = this.value;
+      //$('#div1').text(inputVal);
+    });
   });
-});
 
-$(document).ready(function() {
+  $(document).ready(function () {
 
-$('#invalid_email').hide();
+    $('#invalid_email').hide();
 
-// Function to get input value.
-$('#text_value').click(function() {
-var text_value = $("#u_name").val();
-if(text_value=='') {
-alert("Enter Some Text In Input Field");
-}else{
-alert(text_value);
-}
-});
+    // Function to get input value.
+    $('#text_value').click(function () {
+      var text_value = $("#u_name").val();
+      if (text_value == '') {
+        alert("Enter Some Text In Input Field");
+      } else {
+        alert(text_value);
+      }
+    });
 
-$('#text_reset').click(function() {
-$("#u_name").val('');
-$("#div1").hide();
-})
+    $('#text_reset').click(function () {
+      $("#u_name").val('');
+      $("#div1").hide();
+    })
 
-// Funtion to get checked radio's value.
-//$("input[type='button']").click(function(){
+    // Funtion to get checked radio's value.
+    //$("input[type='button']").click(function(){
 
-$("#gender").click(function(){
- 	var radioValue = $("input[name='gender']:checked").val();
-     if(radioValue){
-   alert("Your are a - " + radioValue);
+    $("#gender").click(function () {
+      var radioValue = $("input[name='gender']:checked").val();
+      if (radioValue) {
+        alert("Your are a - " + radioValue);
+      }
+    });
+
+    //function to get the dropdown value
+    $("#course").on("change", function () {
+      alert($('#course option:selected').text())
+    });
+
+    //function to get the checkbox value 
+
+    $('#confirm').change(function () {
+      $('#div3').text($(this).is(':checked'));
+    });
+
+
+  });
+
+  function IsEmail(email) {
+    var regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    return regex.test(email);
+  }
+
+  //accept only alphabet 
+  $('#u_name').keydown(function (e) {
+    if (e.shiftKey || e.ctrlKey || e.altKey) {
+      e.preventDefault();
+    } else {
+      var key = e.keyCode;
+      if (!((key == 8) || (key == 32) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
+        e.preventDefault();
+      }
     }
- });
- 
- //function to get the dropdown value
- $("#course").on("change",function(){
- alert($('#course option:selected').text())
- });
+  });
 
-//function to get the checkbox value 
+  //validate email
+  $('#email').keyup(function () {
 
-$('#confirm').change(function() {
-                $('#div3').text($(this).is(':checked'));
-            });
+    var value = $(this).val();
+    var valid = IsEmail(value);
 
+    if (!valid) {
 
-});
+      $(this).css('color', 'red');
+      //$('#invalid_email').show();
 
-function IsEmail(email) { 
-   var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/; 
-	return regex.test(email); 
- }
+    } else {
+      $(this).css('color', '#000');
+
+    }
+  });
 
 
-function saveData(){
 
-var text_name = $("#u_name").val();
-var text_email_value = $("#email").val();
+  function saveData() {
+    var text_name = $("#u_name").val();
+    var text_email_value = $("#email").val();
 
-var text_email_status = IsEmail($("#email").val());
-if(!text_email_status) {
-  $('#invalid_email').show(); 
-  return;
-}
-var gender_Value = $("input[name='gender']:checked").val();
-var course_sel = $('#course option:selected').text()
-var confirm= $('#confirm').is(':checked')
-$('#myTable').append('<tr><td>'+text_name+ '</td><td>'+text_email_value+ '</td><td>' +gender_Value+ '</td><td>' +course_sel+'</td><td>'+confirm+'</td></tr>');
+    var text_email_status = IsEmail($("#email").val());
+    
+    var gender_Value = $("input[name='gender']:checked").val();
+    var course_sel = $('#course option:selected').text();
+    var confirm = $('#confirm').is(':checked');
 
-}
+    let submittedData = [];
+    // define form data structure
+    let formData = {
+
+      firstname: String,
+
+      email: String,
+      gender: String,
+      course: String,
+      confirm: Boolean
+
+    };
+    // define json data for output
+    let jsonOutputData = Object.create(formData);
+    var data = $("#user_form").serialize();
+
+    if (data != undefined) {
+      // regular expessions
+      const regxSpace = /(?:%20)/gi;
+      const regxEmail = /(?:%40)/gi;
+      const regxLineBreak = /(?:%0D%0A)/gi;
+      // save data by replacing with regx and split with '&' as parts
+      let sortedData = data.replace(regxSpace, ' ').replace(regxEmail, '@').replace(regxLineBreak, '\n').split('&');
+      // iterate through sortedData and save as array into submittedData
+      $(sortedData).each(function (index, element) {
+        submittedData.push(element.split('='));
+      });
+
+      //console.log(submittedData);
+    }
+
+    if (submittedData != undefined || submittedData != null) {
+      // create JSON data
+      $(submittedData).promise().done(function () {
+        // save json data
+
+        jsonOutputData.firstname = submittedData[0][1];
+        jsonOutputData.email = submittedData[1][1];
+        jsonOutputData.gender = submittedData[2][1];
+        jsonOutputData.course = submittedData[3][1];
+        jsonOutputData.confirm = submittedData[4][1];
+
+
+      });
+
+    }
+
+    let stringifyJsonData = JSON.stringify(jsonOutputData);
+
+    console.log(stringifyJsonData);
+    $('#myTable').append('<tr><td>' + text_name + '</td><td>' + text_email_value + '</td><td>' + gender_Value + '</td><td>' + course_sel + '</td><td>' + confirm + '</td></tr>');
+
+  }
 </script>
+
 </html>
